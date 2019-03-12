@@ -50,28 +50,14 @@ enum macro_keycodes {
   KC_SAMPLEMACRO,
 };
 
-//Tap Dance Declarations
-enum {
-  TAP_LBRC_DTAP_LPRN_TTAP_LCBR = 0,
-  TAP_RBRC_DTAP_RPRN_TTAP_RCBR,
-  TAP_PSCREEN_DTAP_ALTPSCREEN
-};
-
-// Fillers to make layering more clear
-#define _______ KC_TRNS
-#define XXXXXXX KC_NO
 //Macros
 #define M_SAMPLE M(KC_SAMPLEMACRO)
 
-#define SFTT_ENT SFT_T(KC_ENT)
-#define SFTT_SPC SFT_T(KC_SPC)
-#define CTLT_SPC CTL_T(KC_SPC)
-#define CTLT_BSP CTL_T(KC_BSPC)
-#define CTLT_ESC CTL_T(KC_ESC)
-
-#define TD_LBRC TD(TAP_LBRC_DTAP_LPRN_TTAP_LCBR)
-#define TD_RBRC TD(TAP_RBRC_DTAP_RPRN_TTAP_RCBR)
-#define TD_PSCR TD(TAP_PSCREEN_DTAP_ALTPSCREEN)
+#define SFT_ENT SFT_T(KC_ENT)
+#define SFT_MHEN SFT_T(KC_MHEN)
+#define SFT_HENK SFT_T(KC_HENK)
+#define CTL_LBRC CTL_T(KC_LBRC)
+#define CTL_RBRC CTL_T(KC_RBRC)
 
 #if HELIX_ROWS == 5
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -93,8 +79,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_GRV, \
       KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                      KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC, \
       KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                      KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
-      KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_LBRC, KC_RBRC, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, SFTT_ENT, \
-      ADJUST,  KC_MEH,  KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_MHEN, KC_HENK, KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
+      KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    CTL_LBRC,CTL_RBRC,KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, SFT_ENT, \
+      ADJUST,  KC_MEH,  KC_LALT, KC_LGUI, LOWER,   KC_SPC,  SFT_MHEN,SFT_HENK,KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
       ),
 
   /* Lower
@@ -126,7 +112,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
    * |      |  F1  |  F2  |  F3  |  F4  |  F5  |             |  F6  |   -  |   =  |   [  |   ]  |  \   |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |      |  F7  |  F8  |  F9  |  F10 |  F11 |      |      |  F12 |XXXXXX|XXXXXX|XXXXXX|XXXXXX|      |
+   * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  (   |   )  |  F12 |XXXXXX|XXXXXX|XXXXXX|XXXXXX|      |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
    * |      |      |      |      |      |      |      |      |      |      | Home |PageDn|PageUp| End  |
    * `-------------------------------------------------------------------------------------------------'
@@ -135,7 +121,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_GRV, \
       _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_GRV, \
       _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     KC_F6,   KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS, \
-      _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  _______, _______, KC_F12,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, \
+      _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_LPRN, KC_RPRN, KC_F12,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END \
       ),
 
@@ -149,15 +135,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
    * |      |XXXXXX|XXXXXX|XXXXXX|XXXXXX|XXXXXX|XXXXXX|XXXXXX|XXXXXX|XXXXXX|XXXXXX|XXXXXX|XXXXXX|      |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |      |      |      |      |      |      | MHEN | HENK |      |      | Next | Vol- | Vol+ | Play |
+   * |      |      |      |      |      |      |      |      |      |      | Next | Vol- | Vol+ | Play |
    * `-------------------------------------------------------------------------------------------------'
    */
   [_ADJUST] =  LAYOUT( \
       KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                     KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12, \
-      _______, RESET,   RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI,                   AG_NORM, XXXXXXX, XXXXXXX, XXXXXXX, TD_PSCR, KC_DEL, \
-      _______, RGBRST,  RGB_SMOD,RGB_HUD, RGB_SAD, RGB_VAD,                   AG_SWAP, QWERTY,  XXXXXXX, XXXXXXX, XXXXXXX, KC_INS, \
+      _______, RESET,   RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI,                   AG_NORM, XXXXXXX, XXXXXXX, XXXXXXX, KC_PSCR, KC_DEL, \
+      _______, RGBRST,  RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD,                   AG_SWAP, QWERTY,  XXXXXXX, XXXXXXX, XXXXXXX, KC_INS, \
       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, \
-      _______, _______, _______, _______, _______, _______, KC_MHEN, KC_HENK, _______, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY \
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY \
       )
 };
 
@@ -234,7 +220,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, RESET,   _______, _______, _______, _______,                   _______, _______, _______, _______, _______, KC_DEL, \
       _______, _______, _______, AU_ON,   AU_OFF,  AG_NORM,                   AG_SWAP, QWERTY,  _______, _______, _______, _______, \
       _______, _______, _______, _______, _______, _______,                   _______, _______, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, \
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RGB_SMOD,RGB_HUD, RGB_SAD, RGB_VAD \
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD \
       )
 };
 
@@ -311,7 +297,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         } else {
           TOG_STATUS = !TOG_STATUS;
           #ifdef RGBLIGHT_ENABLE
-            //rgblight_mode(16);
+            //rgblight_mode(RGBLIGHT_MODE_SNAKE + 1);
           #endif
         }
         layer_on(_LOWER);
@@ -334,7 +320,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         } else {
           TOG_STATUS = !TOG_STATUS;
           #ifdef RGBLIGHT_ENABLE
-            //rgblight_mode(15);
+            //rgblight_mode(RGBLIGHT_MODE_SNAKE);
           #endif
         }
         layer_on(_RAISE);
@@ -418,79 +404,6 @@ void matrix_init_user(void) {
     #endif
 }
 
-#ifdef TAP_DANCE_ENABLE
-void dance_lbrace_finished(qk_tap_dance_state_t *state, void *user_data) {
-    if (state->count == 1) {
-        register_code(KC_LBRC);
-    } else if (state->count == 2) {
-        register_code(KC_LSFT);
-        register_code(KC_9);
-    } else {
-        register_code(KC_LSFT);
-        register_code(KC_LBRC);
-    }
-}
-
-void dance_lbrace_reset(qk_tap_dance_state_t *state, void *user_data) {
-    if (state->count == 1) {
-        unregister_code(KC_LBRC);
-    } else if (state->count == 2) {
-        unregister_code(KC_LSFT);
-        unregister_code(KC_9);
-    } else {
-        unregister_code(KC_LSFT);
-        unregister_code(KC_LBRC);
-    }
-}
-
-void dance_rbrace_finished(qk_tap_dance_state_t *state, void *user_data) {
-    if (state->count == 1) {
-        register_code(KC_RBRC);
-    } else if (state->count == 2) {
-        register_code(KC_LSFT);
-        register_code(KC_0);
-    } else {
-        register_code(KC_LSFT);
-        register_code(KC_RBRC);
-    }
-}
-
-void dance_rbrace_reset(qk_tap_dance_state_t *state, void *user_data) {
-    if (state->count == 1) {
-        unregister_code(KC_RBRC);
-    } else if (state->count == 2) {
-        unregister_code(KC_LSFT);
-        unregister_code(KC_0);
-    } else {
-        unregister_code(KC_LSFT);
-        unregister_code(KC_RBRC);
-    }
-}
-
-void dance_pscreen_finished(qk_tap_dance_state_t *state, void *user_data) {
-    if (state->count == 1) {
-        register_code(KC_PSCREEN);
-    } else {
-        register_code(KC_LALT);
-        register_code(KC_PSCREEN);
-    }
-}
-
-void dance_pscreen_reset(qk_tap_dance_state_t *state, void *user_data) {
-    if (state->count == 1) {
-        unregister_code(KC_PSCREEN);
-    } else {
-        unregister_code(KC_LALT);
-        unregister_code(KC_PSCREEN);
-    }
-}
-
-qk_tap_dance_action_t tap_dance_actions[] = {
-  [TAP_LBRC_DTAP_LPRN_TTAP_LCBR] = ACTION_TAP_DANCE_FN_ADVANCED (NULL, dance_lbrace_finished, dance_lbrace_reset),
-  [TAP_RBRC_DTAP_RPRN_TTAP_RCBR] = ACTION_TAP_DANCE_FN_ADVANCED (NULL, dance_rbrace_finished, dance_rbrace_reset),
-  [TAP_PSCREEN_DTAP_ALTPSCREEN] = ACTION_TAP_DANCE_FN_ADVANCED (NULL, dance_pscreen_finished, dance_pscreen_reset)
-};
-#endif
 
 #ifdef AUDIO_ENABLE
 
@@ -521,14 +434,7 @@ void music_scale_user(void)
 //SSD1306 OLED update loop, make sure to add #define SSD1306OLED in config.h
 #ifdef SSD1306OLED
 
-// hook point for 'led_test' keymap
-//   'default' keymap's led_test_init() is empty function, do nothing
-//   'led_test' keymap's led_test_init() force rgblight_mode_noeeprom(35);
-__attribute__ ((weak))
-void led_test_init(void) {}
-
 void matrix_scan_user(void) {
-     led_test_init();
      iota_gfx_task();  // this is what updates the display continuously
 }
 
