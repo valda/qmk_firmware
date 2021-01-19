@@ -18,10 +18,11 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef CONFIG_USER_H
-#define CONFIG_USER_H
+#pragma once
 
 // place overrides here
+#undef TAPPING_TERM
+#define TAPPING_TERM 300
 
 // If you need more program area, try select and reduce rgblight modes to use.
 
@@ -37,5 +38,3 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
    //#define RGBLIGHT_EFFECT_RGB_TEST
    //#define RGBLIGHT_EFFECT_ALTERNATING
 #endif
-
-#endif /* CONFIG_USER_H */
