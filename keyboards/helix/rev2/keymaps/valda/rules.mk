@@ -25,7 +25,7 @@ EXTRAKEY_ENABLE = yes        # Audio control and System control(+450)
 # If OLED_ENABLE is 'yes'
 #   If OLED_SELECT is 'core', use QMK standard oled_dirver.c.
 #   If OLED_SELECT is other than 'core', use helix/local_drivers/ssd1306.c.
-OLED_SELECT = local
+OLED_SELECT = core
 
 ifeq ($(strip $(OLED_ENABLE)), yes)
     SRC += oled_display.c
