@@ -51,8 +51,6 @@ enum macro_keycodes {
 #define M_SAMPLE M(KC_SAMPLEMACRO)
 
 #define SFT_ENT SFT_T(KC_ENT)
-#define CTL_LBRC CTL_T(KC_LBRC)
-#define CTL_RBRC CTL_T(KC_RBRC)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -148,7 +146,6 @@ float tone_dvorak[][2]     = SONG(DVORAK_SOUND);
 /* float tone_colemak[][2]    = SONG(COLEMAK_SOUND); */
 /* float tone_plover[][2]     = SONG(PLOVER_SOUND); */
 float tone_plover_gb[][2]  = SONG(PLOVER_GOODBYE_SOUND);
-float music_scale[][2]     = SONG(MUSIC_SCALE_SOUND);
 #endif
 
 // define variables for reactive RGB
@@ -303,45 +300,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   return true;
 }
 
-#ifdef SSD1306OLED
-  #include "ssd1306.h"
-#endif
-
 void matrix_init_user(void) {
-    #ifdef AUDIO_ENABLE
-        startup_user();
-    #endif
     #ifdef RGBLIGHT_ENABLE
       RGB_current_mode = rgblight_get_mode();
     #endif
-    //SSD1306 OLED init, make sure to add #define SSD1306OLED in config.h
-    #ifdef SSD1306OLED
-        iota_gfx_init(!has_usb());   // turns on the display
-    #endif
 }
-
-
-#ifdef AUDIO_ENABLE
-
-void startup_user(void)
-{
-    _delay_ms(20); // gets rid of tick
-}
-
-void shutdown_user(void)
-{
-    _delay_ms(150);
-    stop_all_notes();
-}
-
-void music_on_user(void)
-{
-    music_scale_user();
-}
-
-void music_scale_user(void)
-{
-    PLAY_SONG(music_scale);
-}
-
-#endif
